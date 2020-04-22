@@ -1,0 +1,28 @@
+
+
+$clientId = ''
+$clientSecret = ''
+$tenant = ''
+
+
+$body = @{ 
+   
+	client_id = $clientId
+	client_secret = $clientSecret
+	#scope = "https://storage.azure.com/.default"
+	scope = "https://vault.azure.net/.default"
+    grant_type = "client_credentials" 
+    
+}
+$token = Invoke-RestMethod -Method Post -Uri "https://login.microsoftonline.com/$tenant/oauth2/v2.0/token" -Body $body
+ $token.access_token
+
+
+
+
+$headers = @{
+	#"x-ms-version" = "2018-11-09"
+	Authorization = "Bearer " + $token.access_token
+}
+
+Invoke-RestMethod -Uri 'https://samitimgstrdemo.vault.azure.net/certificates/primcert/3c51026f26d1491f919d18a73baf8210?api-version=7.0' -Method Get -Headers $headers -ContentType 'application/json'
