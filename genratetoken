@@ -25,4 +25,4 @@ $headers = @{
 	Authorization = "Bearer " + $token.access_token
 }
 
-Invoke-RestMethod -Uri 'https://samitimgstrdemo.vault.azure.net/certificates/primcert/3c51026f26d1491f919d18a73baf8210?api-version=7.0' -Method Get -Headers $headers -ContentType 'application/json'
+Invoke-RestMethod -Uri '' -Method Get -Headers $headers -ContentType 'application/json'
